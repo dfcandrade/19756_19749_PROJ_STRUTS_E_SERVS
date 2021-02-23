@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!DOCTYPE hibernate-mapping
+        PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="teste.domain.Component" table="component" abstract="true">
+        <meta attribute="scope-class">public abstract</meta>
+        <id name="id" type="long">
+            <generator class="native"/>
+        </id>
+        <discriminator column="discriminator"/>
+        <timestamp source="db" name="updateDate" unsaved-value="null"/>
+        <!--Add Properties-->
+        <many-to-one name="section" class="teste.domain.Section" column="idSection"/>
+
+        <subclass name="teste.domain.ComponentImpl" discriminator-value="ComponentImpl">
+            <meta attribute="scope-class">public abstract</meta>
+            <subclass name="teste.domain.ComponentText" discriminator-value="ComponentText">
+                <property name="texto" type="string"/>
+                <subclass name="teste.domain.ComponentTextImpl" discriminator-value="ComponentTextImpl"/>
+            </subclass>
+        </subclass>
+    </class>
+</hibernate-mapping>

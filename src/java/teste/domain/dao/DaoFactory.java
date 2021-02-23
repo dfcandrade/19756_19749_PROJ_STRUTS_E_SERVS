@@ -1,16 +1,10 @@
 package teste.domain.dao;
 
-import teste.domain.UnidadeCurricularImpl;
-
 public class DaoFactory
 {
 
-    public static StudentDao createStudentDao()
+    public static UserDao createUserDao()
     {
-        return StudentDao.getInstance();
-    }
-    public static UnidadeCurricularDao createUnidadeCurricularDao()
-    {
-        return UnidadeCurricularDao.getInstance();
+        return UserDao.getInstance();
     }
 }

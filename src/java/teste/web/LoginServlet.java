@@ -3,8 +3,8 @@ package teste.web;
 import org.apache.log4j.Logger;
 import org.hibernate.Transaction;
 import org.hibernate.classic.Session;
-import teste.domain.Student;
-import teste.domain.StudentImpl;
+import teste.domain.User;
+import teste.domain.UserImpl;
 import teste.utils.HibernateUtils;
 
 import javax.servlet.ServletException;
@@ -27,15 +27,15 @@ public class LoginServlet extends AbstractServlet
         Session sess = HibernateUtils.getCurrentSession();
         Transaction t = sess.beginTransaction();
         t.begin();
-        Student s = new StudentImpl();
-        req.getSession().setAttribute("user",s);
-        s.setNome(user);
-        sess.save(s);
+        User u = new UserImpl();
+        req.getSession().setAttribute("user",u);
+        u.setNome(user);
+        sess.save(u);
         t.commit();
 
 
 
 
-        encaminha("/");
+        //encaminha("/");
     }
 }

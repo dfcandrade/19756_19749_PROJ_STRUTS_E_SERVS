@@ -23,21 +23,29 @@
 			<include name="*.jar"/>
 		</fileset>
 
+		<fileset dir="${aspectj}">
+			<include name="*.jar"/>
+		</fileset>
+
 		<fileset dir="${TOMCAT_HOME}/lib">
 			<include name="servlet-api.jar"/>
 		</fileset>
 
-
 	</path>
+
+	<taskdef resource="org/aspectj/tools/ant/taskdefs/aspectjTaskdefs.properties">
+		<classpath>
+			<pathelement location="${aspectj}/aspectjtools.jar"/>
+		</classpath>
+	</taskdef>
 
 	<taskdef name="hibernatetool"
 			 classname="org.hibernate.tool.ant.HibernateToolTask"
 			 classpathref="pathref" classpath="${build.dir.classes}"/>
+
 	<taskdef name="schemaupdate"
 			 classname="org.hibernate.tool.hbm2ddl.SchemaUpdateTask"
 			 classpathref="pathref" classpath="${build.dir.classes}"/>
-
-
 
 	<target name="generateUpdateHibernateSql" depends="compile">
 		<schemaupdate
@@ -135,6 +143,12 @@
 			<fileset dir="lib/json">
 				<include name="*.jar"/>
 			</fileset>
+			<fileset dir="lib/aspectj-1.9.2.RC3">
+				<include name="*.jar"/>
+			</fileset>
+			<fileset dir="src/web/WEB-INF/lib">
+				<include name="*.jar"/>
+			</fileset>
 		</copy>
 		<touch file="build/ant/war/WEB-INF/web.xml"/>
 	</target>
@@ -148,6 +162,12 @@
 	</target>
 
 	<target name="compile" depends="initDirs">
+		<iajc  source="1.8" target="1.8" destdir="build/ant/classes" classpath="lib/aspectj/aspectjrt.jar" classpathref="pathref">
+			   <sourceroots>
+			       <pathelement location="src/java"/>
+			       <pathelement location="src/gen"/>
+			    </sourceroots>
+		</iajc>
 		<javac destdir="build/ant/classes"
 			   debug="true"
 			   encoding="UTF-8"
@@ -158,15 +178,12 @@
 		</javac>
 		<copy file="conf/log4j.properties" todir="build/ant/classes"/>
 		<copy file="conf/hibernate.cfg.xml" todir="build/ant/classes/teste/domain"/>
-
+		<copy file="conf/plugins.properties" todir="build/ant/classes/"/>
 		<copy todir="build/ant/classes">
 			<fileset dir="src/java">
 				<include name="**/*.xml"/>
 			</fileset>
 		</copy>
-
-
-
 		<copy file="conf/jdbc.properties" todir="${build.dir.classes}/teste/domain"/>
 		<replace file="${build.dir.classes}/teste/domain/jdbc.properties">
 			<replacefilter token="@database.username@" value="${database.username}"/>
@@ -180,5 +197,10 @@
 			<replacefilter token="@hibernate.show.sql@" value="${hibernate.show.sql}"/>
 		</replace>
 	</target>
+
+	<replace file="build/ant/classes/plugins.properties">
+		<replacefilter token="@teste.servicepack.pluginSession.RegisterSession@"
+					   value="${teste.servicepack.pluginSession.RegisterSession}"/>
+	</replace>
 
 </project>

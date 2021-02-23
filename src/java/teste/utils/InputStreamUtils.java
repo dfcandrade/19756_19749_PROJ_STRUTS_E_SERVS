@@ -8,8 +8,8 @@ import java.io.InputStreamReader;
 public class InputStreamUtils {
 
     public static String stream2string(InputStream is) throws IOException {
-        InputStreamReader isreader = new InputStreamReader(is);
-        BufferedReader reader = new BufferedReader(isreader);
+        InputStreamReader isReader = new InputStreamReader(is);
+        BufferedReader reader = new BufferedReader(isReader);
 
         String line;
 
