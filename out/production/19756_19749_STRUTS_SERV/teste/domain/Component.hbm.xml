@@ -10,9 +10,7 @@
         </id>
         <discriminator column="discriminator"/>
         <timestamp source="db" name="updateDate" unsaved-value="null"/>
-        <!--Add Properties-->
         <many-to-one name="section" class="teste.domain.Section" column="idSection"/>
-
         <subclass name="teste.domain.ComponentImpl" discriminator-value="ComponentImpl">
             <meta attribute="scope-class">public abstract</meta>
             <subclass name="teste.domain.ComponentText" discriminator-value="ComponentText">

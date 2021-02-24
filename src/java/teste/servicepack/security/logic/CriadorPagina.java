@@ -1,4 +1,5 @@
 package teste.servicepack.security.logic;
 
-public @interface pageCreator {
+public @interface CriadorPagina {
+
 }

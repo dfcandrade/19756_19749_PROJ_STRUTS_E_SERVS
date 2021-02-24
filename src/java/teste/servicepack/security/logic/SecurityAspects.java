@@ -29,8 +29,8 @@ public class SecurityAspects {
     @Pointcut("@annotation(isAuthenticated)")
     public void isAuthenticatedPointCut() {}
 
-    @Pointcut("@annotation(pageCreator)")
-    public void pageCreator() {}
+    @Pointcut("@annotation(CriadorPagina)")
+    public void criadorPaginaPointcut() {}
 
     @Pointcut("execution(* *(..))")
     public void executionPointCut() {}
@@ -90,4 +90,5 @@ public class SecurityAspects {
 
         throw new FailRoleException();
     }
+
 }
