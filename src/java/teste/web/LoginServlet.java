@@ -48,12 +48,25 @@ public class LoginServlet extends AbstractServlet
                 resp.sendRedirect(encodedURL);
             }
         }else{
-            String encodedURL = resp.encodeRedirectURL("http://localhost:8080/es/login.do?wrong_password");
+            String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do?wrong_password");
             resp.sendRedirect(encodedURL);
         }
     }
 
     protected void doService(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String user = req.getParameter("username");
+        String pass = req.getParameter("password");
 
+        logger.info("Recebendo pedido de login do artista: " + user);
+        logger.debug("Recebendo pedido de login do artista com pass " + pass);
+
+        Session sess = HibernateUtils.getCurrentSession();
+        Transaction t = sess.beginTransaction();
+        t.begin();
+        User u = new UserImpl();
+        req.getSession().setAttribute("user",u);
+        u.setNome(user);
+        sess.save(u);
+        t.commit();
     }
 }

@@ -58,6 +58,11 @@
                     <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>  Submeter</button>
                 </div>
             </form>
+            <script>
+                if(window.location.href.indexOf("wrong_password") > -1){
+                    document.getElementById("hidden").innerHTML = "Erro ao autenticar.";
+                }
+            </script>
         </div>
     </div>
 </div>

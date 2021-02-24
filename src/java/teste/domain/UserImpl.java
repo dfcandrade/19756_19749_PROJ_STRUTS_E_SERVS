@@ -39,6 +39,7 @@ public class UserImpl extends User
                 ",saveDate= '" + getSaveDate() +
                 ",name='" + getNome() + "'" +
                 ", username='" + getUsername() + "'" +
+                ", password='" + getPassword() + "'" +
                 ", email='" + getEmail() + "'" +
                 ", roles='" + getRoles() + "'" +
                 "}";

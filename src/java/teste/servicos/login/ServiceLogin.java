@@ -31,7 +31,6 @@ public class ServiceLogin {
             }
         }
         return false;
-
     }
 
     @Transaction

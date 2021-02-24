@@ -18,11 +18,11 @@
     <definition name="page.home" extends="base.definition">
         <put name="title" value="Software"/>
         <put name="header" value="nada.jsp"/>
-        <put name="body" value="login.jsp"/>
+        <put name="body" value="home.jsp"/>
     </definition>
 
     <definition name="page.login" extends="base.definition">
-        <put name="title" value="Autenticação"/>
+        <put name="title" value="Autentica"/>
         <put name="body" value="login.jsp"/>
     </definition>
 

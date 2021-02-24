@@ -47,7 +47,7 @@
             <form class="form-horizontal" action="<%=request.getContextPath()%>/login">
                 <div class="input-group" style="padding-bottom: 10px;">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input class="form-control"placeholder="Username" type="text" name="username">
+                        <input class="form-control" placeholder="Username" type="text" name="username">
                 </div>
 
                 <div class="input-group">
@@ -58,6 +58,12 @@
                     <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>  Submeter</button>
                 </div>
             </form>
+            <script>
+                if(window.location.href.indexOf("wrong_password") > -1){
+                    document.getElementById("hidden").innerHTML = "Erro ao autenticar.";
+                }
+
+            </script>
         </div>
     </div>
 </div>
