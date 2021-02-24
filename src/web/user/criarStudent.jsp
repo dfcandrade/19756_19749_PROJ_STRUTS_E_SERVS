@@ -1,4 +1,4 @@
-<%@ page import="teste.domain.StudentImpl" %><%--
+<%@ page import="teste.domain.UserImpl" %><%--
   Created by IntelliJ IDEA.
   User: jmachado
   Date: 02/12/2019

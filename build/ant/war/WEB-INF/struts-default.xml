@@ -31,9 +31,9 @@
         <action path="/login" forward="page.login"/>
 
 
-        <action path="/user/estudante" forward="page.student"/>
+        <!--<action path="/user/estudante" forward="page.student"/>
 
-        <action path="/user/uc" forward="page.uc"/>
+        <action path="/user/uc" forward="page.uc"/>-->
 
         <!--Authentication-->
       <!--  <action path="/authenticate"

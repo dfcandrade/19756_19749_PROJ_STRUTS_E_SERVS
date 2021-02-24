@@ -16,8 +16,9 @@
 
 
     <definition name="page.home" extends="base.definition">
-        <put name="title" value="Bem vindos"/>
-        <put name="body" value="home.jsp"/>
+        <put name="title" value="Software"/>
+        <put name="header" value="nada.jsp"/>
+        <put name="body" value="login.jsp"/>
     </definition>
 
     <definition name="page.login" extends="base.definition">
