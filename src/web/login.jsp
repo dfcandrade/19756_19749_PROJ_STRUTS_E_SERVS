@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="teste.web.LoginServlet" %>
 <html>
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -44,7 +45,7 @@
 <div class="container login-form">
     <div class="panel panel-default">
         <div class="panel-body">
-            <form class="form-horizontal" action="<%=request.getContextPath()%>/login">
+            <form class="form-horizontal" action="<%=request.getContextPath()%>/login" method="POST">
                 <div class="input-group" style="padding-bottom: 10px;">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                         <input class="form-control" placeholder="Username" type="text" name="username">
@@ -58,15 +59,9 @@
                     <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>  Submeter</button>
                 </div>
             </form>
-            <script>
-                if(window.location.href.indexOf("wrong_password") > -1){
-                    document.getElementById("hidden").innerHTML = "Erro ao autenticar.";
-                }
-            </script>
         </div>
     </div>
 </div>
-
 
 </body>
 </html>

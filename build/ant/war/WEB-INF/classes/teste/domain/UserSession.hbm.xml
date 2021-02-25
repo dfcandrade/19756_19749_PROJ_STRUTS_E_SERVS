@@ -5,14 +5,11 @@
 <hibernate-mapping>
     <class name="teste.domain.UserSession" table="usersession">
         <meta attribute="scope-class">public abstract</meta>
-        <meta attribute="extends">DomainObject</meta>
         <id name="cookie" type="string">
             <generator class="assigned" />
         </id>
         <discriminator column="discriminator"/>
-        <timestamp source="db" name="updateDate"/>
-        <property name="saveDate" type="timestamp"/>
-        <many-to-one name="user" class="teste.domain.User"/>
+        <many-to-one name="user" class="teste.domain.User" column="idUser" outer-join="true" cascade="none"/>
         <subclass name="teste.domain.UserSessionImpl" discriminator-value="UserSessionImpl"/>
     </class>
 </hibernate-mapping>

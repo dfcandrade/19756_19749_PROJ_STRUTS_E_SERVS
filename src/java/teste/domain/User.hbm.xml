@@ -6,13 +6,10 @@
 
     <class name="teste.domain.User" table="user" abstract="true">
         <meta attribute="scope-class">public abstract</meta>
-        <meta attribute="extends">DomainObject</meta>
         <id name="id" type="long">
             <generator class="native"/>
         </id>
         <discriminator column="discriminator"/>
-        <timestamp source="db" name="updateDate" unsaved-value="null"/>
-        <property name="saveDate" type="timestamp"/>
         <property name="nome" type="string"/>
         <property name="username" type="string"/>
         <property name="password" type="string"/>

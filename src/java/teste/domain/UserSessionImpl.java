@@ -11,9 +11,8 @@ public class UserSessionImpl extends UserSession {
             .exclude(Object.class)
             .useClassMetadata(true)
             .useRuntimeType(true)
+            .include("id",UserSession.class)
             .include("cookie",UserSession.class)
-            .include("updateDate",UserSession.class)
-            .include("saveDate",UserSession.class)
             .include("user",UserSession.class)
             .include("user", User.class)
             .create();
@@ -33,8 +32,6 @@ public class UserSessionImpl extends UserSession {
     public String toString() {
         return "UserSession{" +
                 "cookie='" + getCookie() +
-                ",updateDate='" + getUpdateDate() +
-                ",saveDate='" + getSaveDate() +
                 ",user='" + getUser() +'\'' +
                 '}';
     }

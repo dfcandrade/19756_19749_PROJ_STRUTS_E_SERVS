@@ -9,7 +9,6 @@
             <generator class="native"/>
         </id>
         <discriminator column="discriminator"/>
-        <timestamp source="db" name="updateDate" unsaved-value="null"/>
         <property name="titulo" type="string"/>
         <many-to-one name="page" class="teste.domain.Page" column="idPage"/>
         <set name="components" cascade="none">

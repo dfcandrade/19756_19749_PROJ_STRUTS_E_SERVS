@@ -17,25 +17,23 @@
 
     <definition name="page.home" extends="base.definition">
         <put name="title" value="Software"/>
-        <put name="header" value="nada.jsp"/>
+        <put name="header" value="header.jsp"/>
         <put name="body" value="home.jsp"/>
     </definition>
 
     <definition name="page.login" extends="base.definition">
-        <put name="title" value="Autenticação"/>
+        <put name="title" value="Login"/>
+        <put name="header" value="nada.jsp"/>
         <put name="body" value="login.jsp"/>
+        <put name="footer" value="nada.jsp"/>
     </definition>
 
-
-    <definition name="page.student" extends="base.definition">
-        <put name="title" value="Estudante"/>
-        <put name="body" value="/user/criarStudent.jsp"/>
+    <definition name="page.users" extends="base.definition">
+        <put name="title" value="Register Users"/>
+        <put name="header" value="Register Users"/>
+        <put name="body" value="users.jsp"/>
     </definition>
 
-    <definition name="page.uc" extends="base.definition">
-        <put name="title" value="UC"/>
-        <put name="body" value="/user/editStudent.jsp"/>
-    </definition>
 
 
 

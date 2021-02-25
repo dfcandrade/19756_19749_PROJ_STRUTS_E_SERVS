@@ -41,7 +41,7 @@ public class LogoutServlet extends AbstractServlet {
             HttpSession session = req.getSession(false);
             System.out.println("User=" + session.getAttribute("user"));
             session.invalidate();
-            String encodedURL = resp.encodeRedirectURL("http://localhost:8080/es/login.do");
+            String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do");
             resp.sendRedirect(encodedURL);
         }
     }

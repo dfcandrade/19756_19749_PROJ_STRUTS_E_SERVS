@@ -2,12 +2,7 @@ package teste.web;
 
 import org.apache.log4j.Logger;
 import teste.servicos.login.ServiceLogin;
-import org.hibernate.Transaction;
-import org.hibernate.classic.Session;
-import teste.domain.User;
-import teste.domain.UserImpl;
-import teste.utils.HibernateUtils;
-
+import teste.domain.UserSession;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -23,50 +18,41 @@ public class LoginServlet extends AbstractServlet
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String user = req.getParameter("username");
         String pass = req.getParameter("password");
+        logger.info("UM UTILIZADOR-----PEDE LOGIN COM O USERNAME: " + user);
+        logger.debug("UM UTILIZADOR------PEDE LOGIN COM A PASS: " + pass);
         ServiceLogin servLogin = new ServiceLogin();
-        logger.info("User pede login: " + user);
-        logger.debug("Pedido do user com a pass: " + pass);
-
         if(servLogin.checkLogin(user, pass,null)){
             String roles = servLogin.returnRole();
             if(roles!=null){
                 HttpSession session = req.getSession();
-                session.setAttribute("user", user);
+                session.setAttribute("username", user);
                 session.setAttribute("roles", roles);
                 Cookie userName = new Cookie("user", user);
                 resp.addCookie(userName);
                 String encodedURL = resp.encodeRedirectURL("home.do");
                 resp.sendRedirect(encodedURL);
+                encaminha(encodedURL);
+                req.getRequestDispatcher(encodedURL);
             }
             else{
                 HttpSession session = req.getSession();
-                session.setAttribute("user", user);
-                session.setAttribute("roles", "unassigned");
-                Cookie userName = new Cookie("user", user);
+                session.setAttribute("username", user);
+                session.setAttribute("roles", "normal");
+                Cookie userName = new Cookie("username", user);
                 resp.addCookie(userName);
                 String encodedURL = resp.encodeRedirectURL("home.do");
                 resp.sendRedirect(encodedURL);
+                encaminha(encodedURL);
+                req.getRequestDispatcher(encodedURL);
             }
         }else{
             String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do?wrong_password");
             resp.sendRedirect(encodedURL);
         }
+
     }
 
     protected void doService(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String user = req.getParameter("username");
-        String pass = req.getParameter("password");
 
-        logger.info("Recebendo pedido de login do artista: " + user);
-        logger.debug("Recebendo pedido de login do artista com pass " + pass);
-
-        Session sess = HibernateUtils.getCurrentSession();
-        Transaction t = sess.beginTransaction();
-        t.begin();
-        User u = new UserImpl();
-        req.getSession().setAttribute("user",u);
-        u.setNome(user);
-        sess.save(u);
-        t.commit();
     }
 }

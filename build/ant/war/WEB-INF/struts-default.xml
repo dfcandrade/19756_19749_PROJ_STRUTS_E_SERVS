@@ -2,7 +2,7 @@
 
 <!DOCTYPE struts-config PUBLIC
         "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
-        "http://struts.apache.org/dtds/struts-config_1_1.dtd">
+        "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
 
@@ -24,16 +24,11 @@
 
 
     <action-mappings>
-
-
         <!--Portal Forward-->
         <action path="/home" forward="page.home"/>
         <action path="/login" forward="page.login"/>
         <action path="/users" forward="page.users"/>
 
-        <!--<action path="/user/estudante" forward="page.student"/>
-
-        <action path="/user/uc" forward="page.uc"/>-->
 
         <!--Authentication-->
       <!--  <action path="/authenticate"
@@ -47,10 +42,6 @@
             <forward name="logout" path="page.authentication"/>
             <forward name="firstTimeAuthenticate" path="page.first.time.authenticate"/>
         </action>-->
-
-
-
-
 
     </action-mappings>
     <!--20 Megabytes upload max size can go until 700 MB nao se sabe porque

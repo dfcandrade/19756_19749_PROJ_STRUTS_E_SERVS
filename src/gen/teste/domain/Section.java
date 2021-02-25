@@ -1,8 +1,7 @@
 package teste.domain;
-// Generated 24/fev/2021 7:36:21 by Hibernate Tools 3.2.0.b9
+// Generated 25/fev/2021 4:31:08 by Hibernate Tools 3.2.0.b9
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,6 @@ public abstract class Section  implements java.io.Serializable {
 
 
      private long id;
-     private Date updateDate;
      private String titulo;
      private Page page;
      private Set<ComponentImpl> components = new HashSet<ComponentImpl>(0);
@@ -28,13 +26,6 @@ public abstract class Section  implements java.io.Serializable {
     
     public void setId(long id) {
         this.id = id;
-    }
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-    
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
     public String getTitulo() {
         return this.titulo;

@@ -12,7 +12,7 @@
         <timestamp source="db" name="updateDate" unsaved-value="null"/>
         <property name="titulo" type="string"/>
         <property name="roles" type="string"/>
-        <many-to-one name="user" class="teste.domain.User" column="idOwner"/>
+        <many-to-one name="user" class="teste.domain.User" column="iddono"/>
 
         <set name="sections" cascade="none">
             <key column="idPage"/>

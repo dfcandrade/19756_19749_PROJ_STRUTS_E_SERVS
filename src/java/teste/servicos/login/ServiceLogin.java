@@ -16,14 +16,12 @@ public class ServiceLogin {
 
     @Transaction
     @injectSession
-    public boolean checkLogin(String user,String pwd, UserSession session) throws ServletException, IOException {
-
-        //TODO apanhar lista dos users todos
+    public boolean checkLogin(String username,String password, UserSession session) throws ServletException, IOException {
 
         List<User> users = DaoFactory.createUserDao().createCriteria().list();
 
         for (User value : users) {
-            if (value.getUsername().equals(user) && value.getPassword().equals(pwd)) {
+            if (value.getUsername().equals(username) && value.getPassword().equals(password)) {
                 System.out.println(session.getCookie());
                 u = value;
                 session.setUser(value);

@@ -35,8 +35,6 @@ public class UserImpl extends User
     public String toString() {
         return "User{" +
                 "id=" + getId() +
-                ",updateDate='" + getUpdateDate() +
-                ",saveDate= '" + getSaveDate() +
                 ",name='" + getNome() + "'" +
                 ", username='" + getUsername() + "'" +
                 ", password='" + getPassword() + "'" +
