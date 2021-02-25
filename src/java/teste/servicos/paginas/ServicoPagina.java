@@ -21,7 +21,6 @@ public class ServicoPagina {
     @isAuthenticated
     @Transaction
     @HasRole(role = "admin")
-    @CriadorPagina
     public JSONObject addPage(JSONObject page) {
         PageImpl obj = PageImpl.fromJson(page);
         String cookie = SecurityContextProvider.getInstance().getSecuritySessionContext().getRequester();

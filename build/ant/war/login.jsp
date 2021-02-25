@@ -48,12 +48,12 @@
             <form class="form-horizontal" action="<%=request.getContextPath()%>/login" method="POST">
                 <div class="input-group" style="padding-bottom: 10px;">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                        <input class="form-control" placeholder="Username" type="text" name="username">
+                        <input id="username" class="form-control" placeholder="Username" type="text" name="username">
                 </div>
 
                 <div class="input-group">
                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                        <input class="form-control" placeholder="Password" type="password" name="password">
+                        <input id="password" class="form-control" placeholder="Password" type="password" name="password">
                 </div>
                 <div class="form-group" style="text-align: center;padding-top: 10px;">
                     <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>  Submeter</button>

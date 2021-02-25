@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ServiceLogin {
 
-    User u = null;
+    User usr = null;
 
     @Transaction
     @injectSession
@@ -23,7 +23,7 @@ public class ServiceLogin {
         for (User value : users) {
             if (value.getUsername().equals(username) && value.getPassword().equals(password)) {
                 System.out.println(session.getCookie());
-                u = value;
+                usr = value;
                 session.setUser(value);
                 return true;
             }
@@ -33,7 +33,7 @@ public class ServiceLogin {
 
     @Transaction
     public String returnRole(){
-        return u.getRoles();
+        return usr.getRoles();
     }
 
 }

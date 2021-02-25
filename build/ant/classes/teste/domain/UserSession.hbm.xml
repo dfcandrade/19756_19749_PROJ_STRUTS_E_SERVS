@@ -5,11 +5,10 @@
 <hibernate-mapping>
     <class name="teste.domain.UserSession" table="usersession">
         <meta attribute="scope-class">public abstract</meta>
-        <id name="id" type="long">
-            <generator class="native" />
+        <id name="cookie" type="string">
+            <generator class="assigned" />
         </id>
         <discriminator column="discriminator"/>
-        <property name="cookie" type="string" />
         <many-to-one name="user" class="teste.domain.User" column="idUser" outer-join="true" cascade="none"/>
         <subclass name="teste.domain.UserSessionImpl" discriminator-value="UserSessionImpl"/>
     </class>
