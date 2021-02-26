@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class LogoutServlet extends AbstractServlet {
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String user = null;

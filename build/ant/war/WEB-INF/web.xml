@@ -4,7 +4,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"  >
 
-
     <filter>
         <filter-name>UserFilter</filter-name>
         <filter-class>teste.web.UserFilter</filter-class>
@@ -12,7 +11,7 @@
 
     <filter-mapping>
         <filter-name>UserFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <url-pattern>/user/*</url-pattern>
     </filter-mapping>
 
     <filter>
@@ -84,16 +83,13 @@
         <url-pattern>/soa</url-pattern>
     </servlet-mapping>
 
-
-
     <error-page>
         <error-code>404</error-code>
         <location>/errors/erro404.jsp</location>
     </error-page>
 
-    <!--START FILES-->
     <welcome-file-list>
-        <welcome-file>home.do</welcome-file>
+        <welcome-file>login.do</welcome-file>
     </welcome-file-list>
 
    

@@ -22,19 +22,20 @@ public class UserFilter implements javax.servlet.Filter {
                          javax.servlet.ServletResponse resp,
                          javax.servlet.FilterChain chain) throws javax.servlet.ServletException, IOException
     {
-        logger.info("Entrou no filtro");
+        logger.info("----------------------Entrou no filtro----------------------");
 
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
 
 //        response.sendError(404);
 
-        if(request.getSession().getAttribute("user") == null)
+        if(request.getSession().getAttribute("username") == null)
         {
-            request.getRequestDispatcher("/login.jsp").forward(request,response);
+            logger.debug("::::::::::::Filtro está a entrar aqui ouviste lomby:::::::::::: " + ((HttpServletRequest) req).getSession().getAttribute("username"));
+            request.getRequestDispatcher("/login.do").forward(request,response);
         }
         else {
-            logger.debug("Utilizador permitido: " + ((HttpServletRequest) req).getSession().getAttribute("user"));
+            logger.debug("::::::::::::Utilizador permitido:::::::::::: " + ((HttpServletRequest) req).getSession().getAttribute("username"));
             chain.doFilter(req, resp);
         }
     }

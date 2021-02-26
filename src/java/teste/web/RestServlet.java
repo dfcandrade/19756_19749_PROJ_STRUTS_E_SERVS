@@ -14,6 +14,7 @@ public class RestServlet extends AbstractServlet
     private static final Logger logger = Logger.getLogger(RestServlet.class);
 
     @Override
+
     protected void doService(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         if(req.getContentType().equals("application/json"))

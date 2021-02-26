@@ -13,7 +13,6 @@ import java.io.IOException;
 public class LoginServlet extends AbstractServlet
 {
     private static final Logger logger = Logger.getLogger(LoginServlet.class);
-
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String user = req.getParameter("username");

@@ -14,7 +14,6 @@
         <put name="footer" value="footer.jsp" />
     </definition>
 
-
     <definition name="page.home" extends="base.definition">
         <put name="title" value="Software"/>
         <put name="header" value="header.jsp"/>
@@ -33,9 +32,5 @@
         <put name="header" value="Register Users"/>
         <put name="body" value="users.jsp"/>
     </definition>
-
-
-
-
 
 </tiles-definitions>
