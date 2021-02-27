@@ -1,6 +1,7 @@
 package teste.web;
 
 import org.apache.log4j.Logger;
+import teste.domain.User;
 import teste.servicos.login.ServiceLogin;
 import teste.domain.UserSession;
 import javax.servlet.ServletException;
@@ -20,28 +21,29 @@ public class LoginServlet extends AbstractServlet
         logger.info("UM UTILIZADOR-----PEDE LOGIN COM O USERNAME:----" + user);
         logger.debug("UM UTILIZADOR------PEDE LOGIN COM A PASS------:" + pass);
         ServiceLogin servLogin = new ServiceLogin();
-        if(servLogin.checkLogin(user, pass,null)){
+        User u = servLogin.checkLogin(user, pass,null);
+        if(u != null){
             String roles = servLogin.returnRole();
             logger.info("UM UTILIZADOR-----PEDE LOGIN COM O USERNAME:----" + user);
             if(roles!=null){
                 HttpSession session = req.getSession();
+                req.setAttribute("userLoggedIn",u);
                 session.setAttribute("username", user);
                 session.setAttribute("roles", roles);
-                Cookie userName = new Cookie("user", user);
-                resp.addCookie(userName);
                 String encodedURL = resp.encodeRedirectURL("home.do");
                 resp.sendRedirect(encodedURL);
             }
             else{
                 HttpSession session = req.getSession();
+                req.setAttribute("userLoggedIn",u);
                 session.setAttribute("username", user);
                 session.setAttribute("roles", "normal");
-                Cookie userName = new Cookie("username", user);
-                resp.addCookie(userName);
                 String encodedURL = resp.encodeRedirectURL("home.do");
                 resp.sendRedirect(encodedURL);
             }
         }else{
+            HttpSession sess = req.getSession();
+            sess.invalidate();
             String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do?wrong_password");
             resp.sendRedirect(encodedURL);
         }

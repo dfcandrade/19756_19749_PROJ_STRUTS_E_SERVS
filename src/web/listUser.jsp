@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js%22%3E"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
@@ -13,12 +12,12 @@
         }
 
         .clearfix th, .clearfix td{
-            border:  double #000000;
-            color: #000000;
+            border:  double white;
+            color: white;
         }
 
         .clearfix tbody tr td{
-            color: #000000;
+            color: white;
             text-align: center;
         }
     </style>

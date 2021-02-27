@@ -46,7 +46,7 @@ public class DevelopRegisterSession implements RegisterSession {
         session.setUser(u);
 
         HibernateUtils.getCurrentSession().getTransaction().commit();
-
+        request.setAttribute("userLoggedIn",u);
         filterChain.doFilter(servletRequest,response);
     }
 }

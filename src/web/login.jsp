@@ -56,7 +56,7 @@
                         <input id="password" class="form-control" placeholder="Password" type="password" name="password">
                 </div>
                 <div class="form-group" style="text-align: center;padding-top: 10px;">
-                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span>  Submeter</button>
+                    <button type="submit" class="btn btn-success" onclick=""><span class="glyphicon glyphicon-ok"></span>  Submeter</button>
                 </div>
             </form>
         </div>

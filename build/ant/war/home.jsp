@@ -33,6 +33,7 @@
         color: white;
         background-color: transparent;
         text-decoration: underline;
+    }
     img{
         text-align: center;
         color: #ffffff;
@@ -41,22 +42,32 @@
 
 
 </style>
-<div class="container align-center clearfix" style="">
-    <a style="display:block;margin-right:auto;margin-left:auto;" href="user/listUser.jsp">
-        <img src="./img/edit_user.png"/>
-        <p>Listar Utilizadores</p>
-    </a>
-    <a style="display:block;margin-right:auto;margin-left:auto;" href="user/addUser.jsp">
-        <img src="./img/add_user.png"/>
-        <p>Adicionar Utilizadores</p>
-    </a>
-    <a style="display:block;margin-right:auto;margin-left:auto;" href="user/delUser.jsp">
-        <img src="./img/del_user.png"/>
-        <p>Apagar Utilizadores</p>
-    </a>
-    <a style="display:block;margin-right:auto;margin-left:auto;" href="">
+<div class="container align-left clearfix" style="text-align: left">
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listUser.do">
         <img src="./img/list_user.png"/>
         <p>Listar Utilizadores</p>
     </a>
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/addUser.do">
+        <img src="./img/add_user.png"/>
+        <p>Adicionar Utilizadores</p>
+    </a>
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/delUser.do">
+        <img src="./img/del_user.png"/>
+        <p>Apagar Utilizadores</p>
+    </a>
+    <!--<a style="display:block;margin-right:auto;margin-left:auto;" href="">
+        <img src="./img/list_user.png"/>
+        <p>Gerir Utilizadores</p>
+    </a>-->
+</div>
+<div class="container align-right clearfix" style="text-align: right;padding-bottom: 40%">
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listPage.do">
+        <img src="./img/add_page.png"/>
+        <p>Listar Páginas</p>
+    </a>
 
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="delPage.jsp">
+        <img src="./img/del_page.png"/>
+        <p>Apagar Páginas</p>
+    </a>
 </div>

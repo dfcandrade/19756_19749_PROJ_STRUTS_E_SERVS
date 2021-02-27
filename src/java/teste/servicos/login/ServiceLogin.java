@@ -16,7 +16,7 @@ public class ServiceLogin {
 
     @Transaction
     @injectSession
-    public boolean checkLogin(String username,String password, UserSession session) throws ServletException, IOException {
+    public User checkLogin(String username,String password, UserSession session) throws ServletException, IOException {
 
         List<User> users = DaoFactory.createUserDao().createCriteria().list();
 
@@ -25,10 +25,10 @@ public class ServiceLogin {
                 System.out.println(session.getCookie());
                 usr = value;
                 session.setUser(value);
-                return true;
+                return usr;
             }
         }
-        return false;
+        return null;
     }
 
     @Transaction

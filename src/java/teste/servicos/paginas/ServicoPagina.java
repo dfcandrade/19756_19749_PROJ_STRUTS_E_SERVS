@@ -28,8 +28,9 @@ public class ServicoPagina {
 
         if(obj.getId() > 0) {
             PageImpl objPersistent = (PageImpl) DaoFactory.createPageDao().get(obj.getId());
-
             objPersistent.setTitulo(obj.getTitulo());
+            objPersistent.setRoles(session.getUser().getRoles());
+            objPersistent.setUser(session.getUser());
 
             JSONObject jsonObject = new JSONObject(objPersistent.toJson());
 

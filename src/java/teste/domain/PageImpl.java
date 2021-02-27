@@ -54,7 +54,7 @@ public class PageImpl extends Page {
     public String toString() {
         return "Page{" +
                 "id=" + getId() +
-                ", titulo='" + getTitulo() + "'" +
+                ",titulo='" + getTitulo() + "'" +
                 "}";
     }
 }

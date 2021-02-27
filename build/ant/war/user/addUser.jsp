@@ -13,20 +13,49 @@
         }
 
         .clearfix th, .clearfix td{
-            border:  double #000000;
-            color: #000000;
+            border:  double white;
+            color: white;
         }
 
         .clearfix tbody tr td{
-            color: #000000;
+            color: white;
             text-align: center;
+        }
+        table th{
+            color: white;
+        }
+        thead{
+            border-bottom: white solid 1px;
+        }
+
+        .table{
+            color: white;
+        }
+
+        .table thead tr th{
+            color: white;
+        }
+        table thead,table tbody {
+            display: table-header-group;
+        }
+
+        table tbody {
+            overflow-x: hidden;
+            overflow-y: scroll;
+            min-height: 90px;
+            max-height: 300px;
+        }
+
+        td, th {
+            max-width: auto;
+            text-align: left
         }
     </style>
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
     <div >
-        <table  style="width: 75%;margin-left: 1%;" class="clearfix">
+        <table  style="width: 75%;margin-left: 1%;" class="clearfix table">
             <thead>
             <tr>
                 <th>Nome</th>
@@ -34,7 +63,7 @@
                 <th>Password</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th colspan="3"></th>
+                <th></th>
             </tr>
             </thead>
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
@@ -54,21 +83,15 @@
                 <td><input type="text" ng-model="u.email"></td>
                 <td>
                     <select ng-model="u.roles" ng-options="u for u in roles">
-                    <!--<select ng-model="u.roles">
-                        <option ng-value="admin">Admin</option>
-                        <option ng-value="criadorPagina">Criador de página</option>
-                        <option ng-value="normal">Normal</option>-->
                     </select>
                 </td>
             </tr>
-            <tr>
-                <td colspan="3">
-                    <button ng-click="addUser()"><span class="glyphicon glyphicon-plus"></span></button>
-                </td>
-                <td colspan="2">
-                    <button ng-click="saveUser(u)"><span class="glyphicon glyphicon-ok"></span></button>
-                </td>
-            </tr>
+                <button ng-click="addUser()">
+                    <span class="glyphicon glyphicon-plus"/>
+                </button>
+                <button ng-click="saveUser(u)">
+                    <span class="glyphicon glyphicon-ok"/>
+                </button>
             </tbody>
         </table>
 

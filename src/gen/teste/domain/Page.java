@@ -1,8 +1,7 @@
 package teste.domain;
-// Generated 25/fev/2021 17:29:55 by Hibernate Tools 3.2.0.b9
+// Generated 27/fev/2021 0:04:22 by Hibernate Tools 3.2.0.b9
 
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,7 +12,6 @@ public abstract class Page  implements java.io.Serializable {
 
 
      private long id;
-     private Date updateDate;
      private String titulo;
      private String roles;
      private User user;
@@ -29,13 +27,6 @@ public abstract class Page  implements java.io.Serializable {
     
     public void setId(long id) {
         this.id = id;
-    }
-    public Date getUpdateDate() {
-        return this.updateDate;
-    }
-    
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
     }
     public String getTitulo() {
         return this.titulo;

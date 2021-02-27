@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js%22%3E"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <style>
@@ -12,53 +13,42 @@
         }
 
         .clearfix th, .clearfix td{
-            border:  double #000000;
-            color: #000000;
+            border:  double white;
+            color: black;
         }
 
         .clearfix tbody tr td{
-            color: #000000;
+            color: black;
             text-align: center;
         }
     </style>
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
+    <pre style="background-color:gray">
+
+</pre>
     <div >
         <table  style="width: 75%;margin-left: 1%;" class="clearfix">
             <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Username</th>
-                <th>Password</th>
-                <th>Email</th>
-                <th>Roles</th>
-            </tr>
+                <tr>
+                    <th>Nome</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Eliminar User</th>
+                </tr>
             </thead>
-            <tbody>
-            <tr ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
-                <td><input type="text" ng-model="u.nome"></td>
-                <td><input type="text" ng-model="u.username"></td>
-                <td><input type="text" ng-model="u.password"></td>
-                <td><input type="text" ng-model="u.email"></td>
-                <td><input type="text" ng-model="u.roles"></td>
-                <td>
-                    <select ng-model="u.roles">
-                        <option ng-value="admin">Admin</option>
-                        <option ng-value="criadorPagina">Criador de página</option>
-                        <option ng-value="normal">Normal</option>
-                    </select>
-                </td>
-                <td>
-                    <button ng-click="addUser()"><span class="glyphicon glyphicon-plus"></span></button>
-                </td>
-                <td>
-                    <button ng-click="saveUser(u)"><span class="glyphicon glyphicon-ok"></span></button>
-                </td>
-            </tr>
+            <tbody  ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
+                <tr>
+                    <td>{{u.nome}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.roles}}</td>
+                    <td><button ng-click="deleteUser(u)"><span class="glyphicon glyphicon-remove" onclick="window.location.reload();"></span></button></td>
+                </tr>
             </tbody>
         </table>
-
     </div>
 </div>
 
@@ -104,18 +94,10 @@
             );
         };
 
-        $scope.addUser = function(){
-            let u = {
-                '@class' : '<%=UserImpl.class.getName()%>'
-            }
-            $scope.users.push(u);
-
-        }
-
-        $scope.saveUser = function (u){
+        $scope.deleteUser = function (u){
             send(
                 "user.ServicoUser",
-                "addUser",
+                "deleteUser",
                 u,
                 function(result)
                 {
@@ -126,6 +108,13 @@
         }
         $scope.listarUsers();
     });
+
+    function refresh(){
+        location.reload();
+    }
 </script>
+
+
+cc
 </body>
 </html>

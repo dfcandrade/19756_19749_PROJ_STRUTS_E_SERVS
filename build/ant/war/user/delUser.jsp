@@ -25,28 +25,31 @@
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
+    <pre style="background-color:gray">
+    {{users | json}}
+
+</pre>
     <div >
         <table  style="width: 75%;margin-left: 1%;" class="clearfix">
             <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Username</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Eliminar User</th>
-            </tr>
+                <tr>
+                    <th>Nome</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Eliminar User</th>
+                </tr>
             </thead>
             <tbody  ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
-            <td>
-                <td>{{u.nome}}</td>
-                <td>{{u.username}}</td>
-                <td>{{u.email}}</td>
-                <td>{{u.roles}}</td>
-                <td><button ng-click="deleteUser(u)"><span class="glyphicon glyphicon-remove"></span></button></td>
-            </tr>
+                <tr>
+                    <td>{{u.nome}}</td>
+                    <td>{{u.username}}</td>
+                    <td>{{u.email}}</td>
+                    <td>{{u.roles}}</td>
+                    <td><button ng-click="deleteUser(u)"><span class="glyphicon glyphicon-remove"></span></button></td>
+                </tr>
             </tbody>
         </table>
-
     </div>
 </div>
 
@@ -97,16 +100,22 @@
                 "user.ServicoUser",
                 "deleteUser",
                 u,
-                function()
+                function(result)
                 {
-                    let index = $scope.users.indexOf(u);
-                    $scope.users.splice(index,1);
+                    angular.merge(u,result);
+                    $scope.$apply();
                 },
             );
         }
         $scope.listarUsers();
-        $scope.deleteUser();
     });
+
+    function refresh(){
+        location.reload();
+    }
 </script>
+
+
+cc
 </body>
 </html>

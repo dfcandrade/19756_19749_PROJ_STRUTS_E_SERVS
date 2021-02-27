@@ -79,7 +79,7 @@ public class ServicoUser {
     @isAuthenticated
     @HasRole(role="admin")
     public void deleteUser(JSONObject user) {
-        User u = (User) HibernateUtils.getCurrentSession().load(User.class, user.getLong("idUser"));
+        User u = (User) HibernateUtils.getCurrentSession().load(User.class, user.getLong("id"));
         logger.info("-------VAIS------APAGAR----ESTE----USER-----:" + u.getId());
         HibernateUtils.getCurrentSession().delete(u);
     }
