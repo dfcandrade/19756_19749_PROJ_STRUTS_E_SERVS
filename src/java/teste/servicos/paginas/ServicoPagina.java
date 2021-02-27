@@ -1,5 +1,6 @@
 package teste.servicos.paginas;
 
+import org.apache.log4j.Logger;
 import org.hibernate.Hibernate;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -18,6 +19,8 @@ import teste.utils.HibernateUtils;
 import java.util.List;
 
 public class ServicoPagina {
+    private static final Logger logger = Logger.getLogger(ServicoPagina.class);
+
     @isAuthenticated
     @Transaction
     @HasRole(role = "admin")
@@ -45,6 +48,7 @@ public class ServicoPagina {
     @isAuthenticated
     @Transaction
     public JSONObject loadPage(JSONObject page) {
+        logger.info("------ALGUEM ESTA A REQUISITAR A PAGINA--------:");
         Long objId = page.getLong("id");
         PageImpl objPersistent = (PageImpl) DaoFactory.createPageDao().get(objId);
 

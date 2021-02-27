@@ -63,4 +63,18 @@
         <put name="footer" value="nada.jsp"/>
     </definition>
 
+    <definition name="page.editPage" extends="base.definition">
+        <put name="title" value="Editar Paginas"/>
+        <put name="header" value="header.jsp"/>
+        <put name="body" value="editPage.jsp"/>
+        <put name="footer" value="nada.jsp"/>
+    </definition>
+
+    <definition name="page.delPage" extends="base.definition">
+        <put name="title" value="Editar Paginas"/>
+        <put name="header" value="header.jsp"/>
+        <put name="body" value="delPage.jsp"/>
+        <put name="footer" value="nada.jsp"/>
+    </definition>
+
 </tiles-definitions>

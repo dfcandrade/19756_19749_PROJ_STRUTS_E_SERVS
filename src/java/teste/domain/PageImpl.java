@@ -18,7 +18,7 @@ public class PageImpl extends Page {
             .include("components", Page.class)
             .include("titulo", Section.class)
             .include("id", Section.class)
-            .include("texto", ComponentText.class)
+            .include("texto", Component.class)
             .include("id", Component.class)
             .create();
 
@@ -36,7 +36,7 @@ public class PageImpl extends Page {
             .include("titulo", Section.class)
             .include("id", Section.class)
             .include("components", Page.class)
-            .include("texto", ComponentText.class)
+            .include("texto", Component.class)
             .include("id", Component.class)
             .create();
 

@@ -14,10 +14,14 @@
 
         .clearfix th, .clearfix td{
             border:  double white;
-            color: black;
+            color: white;
         }
 
         .clearfix tbody tr td{
+            color: white;
+            text-align: center;
+        }
+        .clearfix tbody tr td span{
             color: black;
             text-align: center;
         }
@@ -25,9 +29,6 @@
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
-    <pre style="background-color:gray">
-
-</pre>
     <div >
         <table  style="width: 75%;margin-left: 1%;" class="clearfix">
             <thead>
@@ -44,7 +45,7 @@
                 <td>{{p.roles}}</td>
                 <td>{{p.iddono}}</td>
                 <td><button ng-click="deletePage(p)">
-                    <span class="glyphicon glyphicon-less"/>
+                    <span class="glyphicon glyphicon-minus"></span>
                 </button>
                 </td>
             </tr>
@@ -95,10 +96,9 @@
             );
         };
 
-
         $scope.deletePage = function (p){
             send(
-                "page.ServicoPagina",
+                "paginas.ServicoPagina",
                 "deletePage",
                 p,
                 function(result)
@@ -115,8 +115,5 @@
         location.reload();
     }
 </script>
-
-
-cc
 </body>
 </html>

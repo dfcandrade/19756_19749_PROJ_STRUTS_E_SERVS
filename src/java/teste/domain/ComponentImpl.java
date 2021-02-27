@@ -12,6 +12,9 @@ public class ComponentImpl extends Component {
             .useClassMetadata(true)
             .useRuntimeType(true)
             .include("id", Component.class)
+            .include("texto",Component.class)
+            .include("imgDir",Component.class)
+            .include("idSection",Component.class)
             .create();
 
     public static ComponentImpl fromJson(JSONObject jsonObject) {
@@ -26,6 +29,8 @@ public class ComponentImpl extends Component {
     public String toString() {
         return "Component{" +
                 "id=" + getId() +
-                "}";
+                ",imgDir='" + getImgDir() +
+                ",texto='" + getTexto() +
+                '}';
     }
 }

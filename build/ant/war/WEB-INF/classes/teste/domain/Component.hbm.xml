@@ -9,14 +9,9 @@
             <generator class="native"/>
         </id>
         <discriminator column="discriminator"/>
-        <timestamp source="db" name="updateDate" unsaved-value="null"/>
+        <property name="texto" type="string"/>
+        <property name="imgDir" type="string"/>
         <many-to-one name="section" class="teste.domain.Section" column="idSection"/>
-        <subclass name="teste.domain.ComponentImpl" discriminator-value="ComponentImpl">
-            <meta attribute="scope-class">public abstract</meta>
-            <subclass name="teste.domain.ComponentText" discriminator-value="ComponentText">
-                <property name="texto" type="string"/>
-                <subclass name="teste.domain.ComponentTextImpl" discriminator-value="ComponentTextImpl"/>
-            </subclass>
-        </subclass>
+        <subclass name="teste.domain.ComponentImpl" discriminator-value="ComponentImpl"/>
     </class>
 </hibernate-mapping>

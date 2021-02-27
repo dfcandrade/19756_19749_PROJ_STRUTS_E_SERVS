@@ -32,6 +32,8 @@
         <action path="/listUser" forward="page.listUser"/>
         <action path="/addUser" forward="page.addUser"/>
         <action path="/delUser" forward="page.delUser" />
+        <action path="/editPage" forward="page.editPage"/>
+        <action path="/delPage" forward="page.delPage"/>
 
     </action-mappings>
     <!--20 Megabytes upload max size can go until 700 MB nao se sabe porque

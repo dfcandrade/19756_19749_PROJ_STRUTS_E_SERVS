@@ -14,11 +14,11 @@
 
     .clearfix th, .clearfix td{
         border:  double white;
-        color: white;
+        color: black;
     }
 
     .clearfix tbody tr td{
-        color: white;
+        color: black;
         text-align: center;
     }
 </style>
@@ -39,10 +39,10 @@
             <tr>
                 <td>{{p.titulo}}</td>
                 <td>{{p.roles}}</td>
-                <td>{{p.iddono}}</td>
+                <td>{{p.id}}</td>
                 <td> - </td>
-                <td><a class="button" href="<%=request.getContextPath()%>/verPage.do?id={{p.id}}">
-                    <span class="icon"><i class="glyphicon glyphicon-ok"></i></span>
+                <td><a class="button" href="<%=request.getContextPath()%>/editPage.do?id={{p.id}}">
+                    <span class="glyphicon glyphicon-ok"></span>
                 </a></td>
             </tr>
         </tbody>

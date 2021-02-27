@@ -2,7 +2,7 @@ package teste.servicos.component;
 
 import org.json.JSONObject;
 import teste.domain.Component;
-import teste.domain.ComponentTextImpl;
+import teste.domain.ComponentImpl;
 import teste.domain.Section;
 import teste.domain.dao.DaoFactory;
 import teste.servicepack.security.logic.HasRole;
@@ -15,16 +15,17 @@ public class ServiceComponent {
     @isAuthenticated
     @HasRole(role="admin")
     @Transaction
-    public JSONObject addComponentText(JSONObject component) {
+    public JSONObject addComponent(JSONObject component) {
         long idSection = component.getLong("idSection");
         Section section = DaoFactory.createSectionDao().load(idSection);
-        ComponentTextImpl obj = ComponentTextImpl.fromJson(component.getJSONObject("c"));
+        ComponentImpl obj = ComponentImpl.fromJson(component.getJSONObject("c"));
 
         if(obj.getId()> 0) {
-            ComponentTextImpl objPersistent = (ComponentTextImpl) DaoFactory.createComponentDao().get(obj.getId());
-
+            ComponentImpl objPersistent = (ComponentImpl) DaoFactory.createComponentDao().get(obj.getId());
+            objPersistent.setId(obj.getId());
+            objPersistent.setSection(obj.getSection());
             objPersistent.setTexto(obj.getTexto());
-
+            objPersistent.setImgDir(obj.getImgDir());
             JSONObject jsonObject = new JSONObject(objPersistent.toJson());
 
             return jsonObject;
