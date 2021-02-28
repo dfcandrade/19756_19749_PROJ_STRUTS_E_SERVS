@@ -13,7 +13,7 @@ public class SectionImpl extends Section {
             .useRuntimeType(true)
             .include("id", Section.class)
             .include("titulo", Section.class)
-            .include("idPage", Section.class)
+            .include("idPage", Page.class)
             .create();
 
     public static SectionImpl fromJson(JSONObject jsonObject) {
@@ -26,7 +26,8 @@ public class SectionImpl extends Section {
     public String toString() {
         return "Section{" +
                 "id=" + getId() +
-                ", titulo='" + getTitulo() + "'" +
+                ", titulo='" + getTitulo() +
+                ", idPage='" + getPage().getId() +
                 "}";
     }
 }

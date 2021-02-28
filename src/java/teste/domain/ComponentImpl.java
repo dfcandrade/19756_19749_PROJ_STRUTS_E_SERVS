@@ -29,8 +29,9 @@ public class ComponentImpl extends Component {
     public String toString() {
         return "Component{" +
                 "id=" + getId() +
-                ",imgDir='" + getImgDir() +
                 ",texto='" + getTexto() +
+                ",imgDir='" + getImgDir() +
+                ",idSection='" + getSection().getId()+
                 '}';
     }
 }

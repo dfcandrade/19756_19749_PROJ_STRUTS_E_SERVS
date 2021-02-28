@@ -14,12 +14,21 @@
 
     .clearfix th, .clearfix td{
         border:  double white;
-        color: black;
+        color: white;
     }
 
     .clearfix tbody tr td{
-        color: black;
-        text-align: center;
+        color: white;
+        text-align: white;
+    }
+    input{
+        color:black;
+    }
+    span{
+        color:black;
+    }
+    .glyphicon glyphicon-ok {
+        color:gr
     }
 </style>
 </head>

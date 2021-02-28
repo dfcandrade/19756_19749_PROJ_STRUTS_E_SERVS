@@ -15,11 +15,12 @@ public class PageImpl extends Page {
             .include("titulo", Page.class)
             .include("roles", Page.class)
             .include("sections", Page.class)
-            .include("components", Page.class)
             .include("titulo", Section.class)
             .include("id", Section.class)
-            .include("texto", Component.class)
+            .include("components", Section.class)
             .include("id", Component.class)
+            .include("texto", Component.class)
+            .include("imgDir", Component.class)
             .create();
 
     static Genson gensonSingle = new GensonBuilder()
@@ -32,12 +33,12 @@ public class PageImpl extends Page {
             .include("titulo", Page.class)
             .include("roles", Page.class)
             .include("sections", Page.class)
-            .include("components", Section.class)
             .include("titulo", Section.class)
             .include("id", Section.class)
-            .include("components", Page.class)
-            .include("texto", Component.class)
+            .include("components", Section.class)
             .include("id", Component.class)
+            .include("texto", Component.class)
+            .include("imgDir", Component.class)
             .create();
 
     public static PageImpl fromJson(JSONObject jsonObject) {

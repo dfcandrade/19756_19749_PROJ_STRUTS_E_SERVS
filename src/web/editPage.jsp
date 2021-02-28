@@ -13,6 +13,9 @@
     body {
         background-color: darkslateblue;
     }
+    th {
+        color:white;
+    }
 </style>
 <html>
 <%
@@ -20,35 +23,42 @@
 %>
 
 <div id="myApp" ng-app="myApp" ng-controller="myCtrl">
-    <h2 >{{page.titulo}}</h2>
+    <h2 style="text-align: center">{{page.titulo}}</h2>
 
     <div class="container">
         <h3>Edit Sections</h3>
 
         <%--Create Section or Delete Section--%>
-        <button class="button" ng-click="addSection()">
-            Adicionar Section
-        </button>
+
         <table class="table">
             <thead>
             <tr>
                 <th style="color: #ffffff;">Title</th>
-                <th colspan="2"></th>
+                <th>Guardar Section</th>
+                <th>Apagar Section</th>
             </tr>
             </thead>
-            <tbody>
-            <tr ng-repeat="s in page.sections">
+            <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="s in page.sections">
+                <tr>
+                    <td>
+                        {{s.titulo}}
+                    </td>
+                    <td colspan="1"></td>
+                    <td>
+                        <button class="button" ng-click="deleteSection(s)" onclick="window.location.reload();">
+                            Apagar Sections
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+            <tbody ng-app="myApp" ng-controller="myCtrl">
+            <tr>
                 <td>
                     <input class="input" type="text" ng-model="s.titulo">
                 </td>
                 <td>
-                    <button class="button" ng-click="saveSection(s)">
+                    <button class="button" ng-click="saveSection(s)" onclick="window.location.reload();">
                         Guardar Sections
-                    </button>
-                </td>
-                <td>
-                    <button class="button" ng-click="deleteSection(s); page.sections.splice($index,1)">
-                        Apagar Sections
                     </button>
                 </td>
             </tr>
@@ -56,59 +66,57 @@
         </table>
         <%--Create or Delete components--%>
         <h3>Edit Components</h3>
-        <div ng-repeat="s in page.sections">
-            <button ng-click="addComponent(s)">
-                Aicionar Componente
-            </button>
-            <table class="table">
+
+            <table ng-app="myApp" ng-controller="myCtrl" class="table" ng-repeat="s in page.sections">
                 <thead>
                 <tr>
-                    <th style="color: #ffffff;">{{s.titulo}}</th>
-                    <th colspan="3"></th>
+                    <th>
+                        {{s.titulo}}<input type="button" value="Criar Componente" id="btnComp" style="color:black" ng-click="ShowHide(s.id)"/>
+                    </th>
+                    <th>
+                        Image Path
+                    </th>
+                    <th>
+                        Guardar
+                    </th>
+                    <th>
+                        Apagar
+                    </th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="c in s.components">
                     <td>
-                        <input type="text" ng-model="c.texto">
+                        {{c.texto}}
+                    </td>
+                    <td>{{c.imgDir}}</td>
+                    <td colspan="1">
+                        {{c.idSection}}
                     </td>
                     <td>
-                        <button ng-click="saveComponentText(s, c)">
-                            Guardar Componente
-                        </button>
-                    </td>
-                    <td>
-                        <button class="button" ng-click="deleteComponent(c); s.components.splice($index,1)">
-                            <span class="icon"><i class="mdi mdi-delete"></i></span>
+                        <button class="button" ng-click="deleteComponent(c)" onclick="window.location.reload();">
+                            Apagar Componentes
                         </button>
                     </td>
                 </tr>
                 </tbody>
+                <tbody>
+                    <tr ng-show="isVisible">
+                        <td>
+                            <input type="text" ng-model="c.texto">
+                        </td>
+                        <td>
+                            <input type="text" ng-model="c.imgDir">
+                        </td>
+                        <td>
+                            <button ng-click="saveComponent(c)" onclick="window.location.reload();">
+                                Guardar Componente
+                            </button>
+                        </td>
+
+                    </tr>
+                </tbody>
             </table>
-        </div>
-
-        <%--Table where can be show the page title, Section and the Component Text--%>
-        <div >
-            <div >
-                <table class="clearfix" style="width: 75%;margin-left: 1%; color: #ffffff;" id="myTable">
-                    <thead>
-                    <tr>
-                        <th>Page Title</th>
-                        <th>Section</th>
-                        <th>Component Text</th>
-                    </tr>
-                    </thead>
-                    <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="s in page.sections" class="clearfix">
-                    <tr ng-repeat="c in s.components" style=" border-bottom: #ffffff 1px solid;">
-                        <td>{{page.titulo}}</td>
-                        <td>{{s.titulo}}</td>
-                        <td>{{c.texto}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-
               <pre>
                   {{page|json}}
               </pre>
@@ -144,14 +152,20 @@
     }
     let app = angular.module("myApp", []);
     app.controller("myCtrl", function($scope) {
-
         $scope.id = <%=id%>;
+        $scope.idSec = [];
+        $scope.isVisible = false;
         $scope.page = {
             sections: [
                 { components: [] }
             ]
         };
-
+        $scope.ShowHide = function (idSec) {
+            //If DIV is visible it will be hidden and vice versa.
+            $scope.idSec = idSec;
+            $scope.isVisible = $scope.isVisible ? false : true;
+            $scope.apply();
+        };
         $scope.loadPage = function(){
             send(
                 "paginas.ServicoPagina",
@@ -164,27 +178,6 @@
                     $scope.$apply();
                 }
             );
-        };
-
-        $scope.addSection = function() {
-            let s = {
-                '@class' : '<%=SectionImpl.class.getName()%>'
-            };
-
-            if(!$scope.page.sections)
-                $scope.page.sections = [];
-            $scope.page.sections.push(s);
-        };
-
-        $scope.addComponent = function(section) {
-            let c = {
-                "@class": "<%=ComponentImpl.class.getName()%>"
-            };
-
-            if(!section.components) {
-                section.components = [];
-            }
-            section.components.push(c);
         };
 
         $scope.savePage = function() {
@@ -204,39 +197,30 @@
                 "section.ServiceSection",
                 "addSection",
                 {
-                    "idPage": $scope.id,
-                    "s": s
+                    idPage: $scope.id,
+                    titulo: s.titulo
                 },
                 function(result) {
                     angular.merge(s,result);
                     $scope.$apply();
                 },
-                function(erro)
-                {
-                    alert(erro);
-                    $scope.$apply();
-                }
             );
         };
 
-        $scope.saveComponentText = function(c) {
+        $scope.saveComponent = function(c) {
             send(
                 "component.ServiceComponent",
                 "addComponent",
                 {
-                    //"idSection": s.id,
-                    "c": c
+                    idSection: $scope.idSec,
+                    texto: c.texto,
+                    imgDir: c.imgDir
                 },
                 function(result) {
                     angular.merge(c,result);
                     $scope.$apply();
                 },
-                function(erro)
-                {
-                    alert(erro);
-                    $scope.$apply();
-                }
-            )
+            );
         };
 
         $scope.deleteSection = function(s) {
@@ -255,7 +239,7 @@
                     alert(erro);
                     $scope.$apply();
                 }
-            )
+            );
         };
 
         $scope.deleteComponent = function(c) {
@@ -263,21 +247,15 @@
                 "component.ServiceComponent",
                 "deleteComponent",
                 {
-                    c,
-                    "idComponent": c.id,
-                    "idPage": $scope.id
+                    id:c.id
                 },
                 function(result) {
-                    //$scope.loadPage();
+                    angular.merge(c,result);
                     $scope.$apply();
                 },
-                function (erro) {
-                    alert(erro);
-                    $scope.$apply();
-                }
-            )
-        };
 
+            );
+        };
         $scope.loadPage();
     })
 </script>

@@ -14,20 +14,17 @@
 
         .clearfix th, .clearfix td{
             border:  double white;
-            color: black;
+            color: white;
         }
 
         .clearfix tbody tr td{
-            color: black;
+            color: white;
             text-align: center;
         }
     </style>
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
-    <pre style="background-color:gray">
-
-</pre>
     <div >
         <table  style="width: 75%;margin-left: 1%;" class="clearfix">
             <thead>
@@ -113,8 +110,5 @@
         location.reload();
     }
 </script>
-
-
-cc
 </body>
 </html>
