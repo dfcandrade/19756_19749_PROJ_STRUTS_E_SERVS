@@ -3,12 +3,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-
     <style>
         body{
             background-color: darkslateblue;
-            color: #ffffff;
         }
+        hr{
+            width: 75%;
+            border:4px;
+            color: black;
+        }
+        #titlePage {
+            color: white;
+            text-align: center;
+        }
+        .panel {
+            margin-right: 50px;
+            margin-left: 50px;
+        }
+        .panel-heading {
+            text-align: center;
+        }
+        .panel-body {
+            text-align: left;
+        }
+
+        #titleHR {
+            width: 75%;
+            border: 5px solid white;
+            border-radius: 5px;
+        }
+
     </style>
 </head>
 <body>
@@ -17,19 +41,19 @@
 %>
 
 <div id="myApp" ng-app="myApp" ng-controller="myCtrl">
-    <h2>{{paginas.titulo}}</h2>
+    <h2 id="titlePage">{{paginas.titulo}}</h2>
+    <hr id="titleHR">
 
-    <div ng-repeat="s in paginas.sections" style="padding-bottom: 1em;">
-        <h2>Section Title.:</h2>
-        <h3 >{{s.titulo}}</h3>
-        <h2>Component.:</h2>
-        <div ng-repeat="c in s.components" style="padding-bottom: 1em;">
-            <h3>{{ c.text }}</h3>
+    <div class="panel panel-default">
+        <div class="panel-heading" ng-repeat="s in paginas.sections" style="padding-bottom: 1em;">
+            <strong><h3>{{s.titulo}}</h3></strong>
+            <div class="panel-body" ng-repeat="c in s.components" style="padding-bottom: 1em;">
+                <h5>{{c.texto}}</h5>
+                <hr>
+            </div>
         </div>
-        <hr/>
     </div>
 </div>
-
 <script>
     function send(serviceName, method, data, callbackOk) {
         $.ajax({
@@ -61,7 +85,7 @@
     app.controller("myCtrl", function($scope) {
 
         $scope.id = <%=id%>;
-        $scope.page = {
+        $scope.paginas = {
             sections: [
                 { components: [] }
             ]
@@ -72,15 +96,28 @@
                 "paginas.ServicoPagina",
                 "loadPage",
                 {
-                    "page": $scope.id,
+                    id: $scope.id,
                 },
                 function(result) {
-                    $scope.page = $
+                    $scope.paginas = result;
                     $scope.$apply();
                 }
             );
         };
-
+        $scope.loadComponents = function(){
+            send(
+                "component.ServiceComponent",
+                "returnComps",
+                {
+                    id: $scope.id,
+                },
+                function(result) {
+                    $scope.paginas.sections.components = result;
+                    $scope.$apply();
+                }
+            );
+        };
+        $scope.loadComponents();
         $scope.loadPage();
     });
 </script>

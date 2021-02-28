@@ -35,7 +35,7 @@
         <put name="footer" value="nada.jsp"/>
     </definition>
     
-    <definition name="page.verPagina" extends="base.definition">
+    <definition name="page.verPage" extends="base.definition">
         <put name="title" value="Ver Paginas"/>
         <put name="header" value="header.jsp"/>
         <put name="body" value="verPage.jsp"/>
@@ -43,9 +43,16 @@
     </definition>
 
     <definition name="page.listPage" extends="base.definition">
-        <put name="title" value="Listar Paginas"/>
+        <put name="title" value="Editar Paginas"/>
         <put name="header" value="header.jsp"/>
         <put name="body" value="listPage.jsp"/>
+        <put name="footer" value="nada.jsp"/>
+    </definition>
+
+    <definition name="page.listVerPage" extends="base.definition">
+        <put name="title" value="Listar Paginas"/>
+        <put name="header" value="header.jsp"/>
+        <put name="body" value="listVerPage.jsp"/>
         <put name="footer" value="nada.jsp"/>
     </definition>
 

@@ -16,11 +16,11 @@ public class LoginServlet extends AbstractServlet
     private static final Logger logger = Logger.getLogger(LoginServlet.class);
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        ServiceLogin servLogin = new ServiceLogin();
         String user = req.getParameter("username");
         String pass = req.getParameter("password");
         logger.info("UM UTILIZADOR-----PEDE LOGIN COM O USERNAME:----" + user);
         logger.debug("UM UTILIZADOR------PEDE LOGIN COM A PASS------:" + pass);
-        ServiceLogin servLogin = new ServiceLogin();
         User u = servLogin.checkLogin(user, pass,null);
         if(u != null){
             String roles = servLogin.returnRole();
@@ -42,8 +42,8 @@ public class LoginServlet extends AbstractServlet
                 resp.sendRedirect(encodedURL);
             }
         }else{
-            HttpSession sess = req.getSession();
-            sess.invalidate();
+            //HttpSession sess = req.getSession();
+            //sess.invalidate();
             String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do?wrong_password");
             resp.sendRedirect(encodedURL);
         }

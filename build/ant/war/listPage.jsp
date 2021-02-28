@@ -28,7 +28,7 @@
         color:black;
     }
     .glyphicon glyphicon-ok {
-        color:gr
+        color:green;
     }
 </style>
 </head>

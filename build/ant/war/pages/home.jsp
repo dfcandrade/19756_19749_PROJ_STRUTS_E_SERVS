@@ -39,27 +39,27 @@
 </style>
 <div class="container align-left clearfix" style="text-align: left; display:inline-flex">
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listUser.do">
-        <img src="./img/list_user.png"/>
+        <img src="../img/list_user.png"/>
         <p>Listar Utilizadores</p>
     </a>
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/addUser.do">
-        <img src="./img/add_user.png"/>
+        <img src="../img/add_user.png"/>
         <p>Adicionar Utilizadores</p>
     </a>
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/delUser.do">
-        <img src="./img/del_user.png"/>
+        <img src="../img/del_user.png"/>
         <p>Apagar Utilizadores</p>
     </a>
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listPage.do">
-        <img src="./img/add_page.png"/>
+        <img src="../img/add_page.png"/>
         <p style="text-align: center">Editar Páginas</p>
     </a>
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/delPage.do">
-        <img src="./img/del_page.png"/>
+        <img src="../img/del_page.png"/>
         <p style="text-align: center">Apagar Páginas</p>
     </a>
-    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listVerPage.do">
-        <img src="./img/see_page.png"/>
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/verPage.do">
+        <img src="../img/see_page.png"/>
         <p style="text-align: center">Ver Páginas</p>
     </a>
 </div>

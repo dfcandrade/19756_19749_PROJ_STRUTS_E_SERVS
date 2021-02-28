@@ -10,18 +10,7 @@ public class ServiceLogout {
     @isAuthenticated
     @Transaction
     @injectSession
-    public boolean logout(String user, UserSession session) {
-
-        List<UserSession> users = DaoFactory.createUserSessionDao().createCriteria().list();
-
-        for (UserSession value : users) {
-            if (value.getUser().getUsername().equals(user)) {
-                DaoFactory.createUserSessionDao().delete(session);
-                return true;
-            }
-        }
-        return false;
+    public void logout(UserSession session) {
+                session.setUser(null);
     }
-
-
 }

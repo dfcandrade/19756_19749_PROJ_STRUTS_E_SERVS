@@ -15,17 +15,13 @@ public class LogoutServlet extends AbstractServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT---LOGOUT");
-        String user = req.getParameter("username");
+        HttpSession session = req.getSession();
+        //String user = req.getParameter("username");
         ServiceLogout servLogout = new ServiceLogout();
-        if (servLogout.logout(user, null)) {
-            //invalidate the session if exists
-            HttpSession session = req.getSession(false);
-            System.out.println("User=" + session.getAttribute("user"));
-            session.setAttribute("isLoggedIn",false);
-            session.invalidate();
-            String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do");
-            resp.sendRedirect(encodedURL);
-        }
+        servLogout.logout(null);
+        session.setAttribute("isLoggedIn", false);
+        String encodedURL = resp.encodeRedirectURL("http://localhost:8080/projES/login.do");
+        resp.sendRedirect(encodedURL);
     }
 
     @Override

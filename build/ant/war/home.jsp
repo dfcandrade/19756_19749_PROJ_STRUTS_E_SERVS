@@ -52,10 +52,14 @@
     </a>
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listPage.do">
         <img src="./img/add_page.png"/>
-        <p style="text-align: center">Listar Páginas</p>
+        <p style="text-align: center">Editar Páginas</p>
     </a>
     <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/delPage.do">
         <img src="./img/del_page.png"/>
         <p style="text-align: center">Apagar Páginas</p>
+    </a>
+    <a style="display:block;margin-right:auto;margin-left:auto;" href="<%=request.getContextPath()%>/listVerPage.do">
+        <img src="./img/see_page.png"/>
+        <p style="text-align: center">Ver Páginas</p>
     </a>
 </div>

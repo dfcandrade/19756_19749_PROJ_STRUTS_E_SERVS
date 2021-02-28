@@ -43,6 +43,24 @@ public class ServiceComponent {
         return new JSONObject(obj.toJson());
     }
 
+    public JSONArray returnComps(JSONObject dummy) throws JSONException
+    {
+        logger.info("este e o dummy"+dummy);
+        Page page = DaoFactory.createPageDao().load(dummy.getLong("id"));
+        JSONArray results = new JSONArray();
+
+
+        for(Section s: page.getSections()) {
+
+            if (s.getId() == dummy.getLong("id")) {
+                for (Component c : s.getComponents()) {
+                    results.put(new JSONObject(((ComponentImpl) c).toJson()));
+                }
+            }
+        }
+        logger.info("este sao os resul"+results);
+        return results;
+    }
 
     @isAuthenticated
     @HasRole(role="admin")
