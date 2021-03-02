@@ -6,7 +6,6 @@
 <%@ taglib uri="/WEB-INF/tlds/struts-logic.tld"  prefix="logic" %>
 <%@ taglib uri="/WEB-INF/tlds/struts-bean.tld"  prefix="bean" %>
 <%@ taglib uri="/WEB-INF/tlds/struts-tiles.tld"  prefix="tiles" %>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js%22%3E"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <style>
@@ -23,10 +22,10 @@
 %>
 
 <div id="myApp" ng-app="myApp" ng-controller="myCtrl">
-    <h2 style="text-align: center">{{page.titulo}}</h2>
+    <h2 style="color:white;text-align: center">{{page.titulo}}</h2>
 
     <div class="container">
-        <h3>Edit Sections</h3>
+        <h3 style="color:white">Edit Sections</h3>
 
         <%--Create Section or Delete Section--%>
 
@@ -40,7 +39,7 @@
             </thead>
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="s in page.sections">
                 <tr>
-                    <td>
+                    <td style="color:white">
                         {{s.titulo}}
                     </td>
                     <td colspan="1"></td>
@@ -65,7 +64,7 @@
             </tbody>
         </table>
         <%--Create or Delete components--%>
-        <h3>Edit Components</h3>
+        <h3 style="color:white">Edit Components</h3>
 
             <table ng-app="myApp" ng-controller="myCtrl" class="table" ng-repeat="s in page.sections">
                 <thead>
@@ -86,12 +85,11 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="c in s.components">
-                    <td>
+                    <td style="color:white">
                         {{c.texto}}
                     </td>
-                    <td>{{c.imgDir}}</td>
+                    <td style="color:white">{{c.imgDir}}</td>
                     <td colspan="1">
-                        {{c.idSection}}
                     </td>
                     <td>
                         <button class="button" ng-click="deleteComponent(c)" onclick="window.location.reload();">
@@ -105,11 +103,13 @@
                         <td>
                             <input type="text" ng-model="c.texto">
                         </td>
-                        <td>
-                            <input type="text" ng-model="c.imgDir">
+                        <td ng-controller="myCtrl">
+                            <input file-model="myFile" style="color:black" type="file" class="form-control" id ="myFileField"/>
+                            <!--<button ng-click="uploadFile()" class = "btn btn-primary">Upload File</button>-->
+                            <!--<input type="text" ng-model="c.imgDir">-->
                         </td>
                         <td>
-                            <button ng-click="saveComponent(c)" onclick="window.location.reload();">
+                            <button style="color:black" ng-click="saveComponent(c)" onclick="window.location.reload();">
                                 Guardar Componente
                             </button>
                         </td>
@@ -150,8 +150,41 @@
             }
         });
     }
+
     let app = angular.module("myApp", []);
-    app.controller("myCtrl", function($scope) {
+
+    app.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                let model = $parse(attrs.fileModel);
+                let modelSetter = model.assign;
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
+
+    app.service('fileUpload', ['$http', function ($http) {
+        this.uploadFileToUrl = function(file, uploadUrl){
+            let fd = new FormData();
+            fd.append('file', file);
+            $http.post(uploadUrl, fd, {
+                transformRequest: angular.identity,
+                headers: {'Content-Type': undefined}
+            })
+                .success(function(){
+                })
+                .error(function(){
+                });
+        }
+    }]);
+
+    app.controller('myCtrl', ['$scope', 'fileUpload', function($scope, fileUpload) {
+        $scope.myFile = [];
         $scope.id = <%=id%>;
         $scope.idSec = [];
         $scope.isVisible = false;
@@ -160,6 +193,7 @@
                 { components: [] }
             ]
         };
+        let file = $scope.myFile;
         $scope.ShowHide = function (idSec) {
             //If DIV is visible it will be hidden and vice versa.
             $scope.idSec = idSec;
@@ -208,15 +242,17 @@
         };
 
         $scope.saveComponent = function(c) {
+            let uploadUrl = "<%request.getContextPath();%>/img/";
             send(
                 "component.ServiceComponent",
                 "addComponent",
                 {
                     idSection: $scope.idSec,
                     texto: c.texto,
-                    imgDir: c.imgDir
+                    imgDir: file.toString()
                 },
                 function(result) {
+                    fileUpload.uploadFileToUrl(file, uploadUrl);
                     angular.merge(c,result);
                     $scope.$apply();
                 },
@@ -232,7 +268,6 @@
                     "idSection": s.id
                 },
                 function(result) {
-                    //$scope.loadPage();
                     $scope.$apply();
                 },
                 function (erro) {
@@ -257,5 +292,5 @@
             );
         };
         $scope.loadPage();
-    })
+    }]);
 </script>

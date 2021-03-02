@@ -49,6 +49,7 @@
             <strong><h3>{{s.titulo}}</h3></strong>
             <div class="panel-body" ng-repeat="c in s.components" style="padding-bottom: 1em;">
                 <h5>{{c.texto}}</h5>
+                <img src="./img/{{c.imgDir}}" />
                 <hr>
             </div>
         </div>

@@ -10,24 +10,14 @@
             align-content: center;
             background-color: darkslateblue;
         }
-
-        .clearfix th, .clearfix td{
-            border:  double white;
-            color: white;
-        }
-
-        .clearfix tbody tr td{
-            color: white;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
     <div >
-        <table  style="width: 75%;margin-left: 1%;" class="clearfix">
+        <table  style="width: 75%;margin-left: 1%;" class="table clearfix">
             <thead>
-            <tr>
+            <tr style="color: white">
                 <th>Nome</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -35,7 +25,7 @@
             </tr>
             </thead>
             <tbody  ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
-            <tr>
+            <tr style="color: white">
                 <td>{{u.nome}}</td>
                 <td>{{u.username}}</td>
                 <td>{{u.email}}</td>

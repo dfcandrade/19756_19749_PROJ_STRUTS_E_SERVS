@@ -12,20 +12,8 @@
             background-color: darkslateblue;
         }
 
-        .clearfix th, .clearfix td{
-            border:  double white;
-            color: black;
-        }
-
-        .clearfix tbody tr td{
-            color: black;
-            text-align: center;
-        }
         table th{
             color: white;
-        }
-        thead{
-            border-bottom: white solid 1px;
         }
 
         .table{
@@ -35,27 +23,12 @@
         .table thead tr th{
             color: white;
         }
-        table thead,table tbody {
-            display: table-header-group;
-        }
-
-        table tbody {
-            overflow-x: hidden;
-            overflow-y: scroll;
-            min-height: 90px;
-            max-height: 300px;
-        }
-
-        td, th {
-            max-width: auto;
-            text-align: left
-        }
     </style>
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
     <div >
-        <table  style="width: 75%;margin-left: 1%;" class="clearfix table">
+        <table style="width: 75%;margin-left: 1%;" class="clearfix table">
             <thead>
             <tr>
                 <th>Nome</th>
@@ -63,7 +36,7 @@
                 <th>Password</th>
                 <th>Email</th>
                 <th>Roles</th>
-                <th></th>
+                <th>Adicionar</th>
             </tr>
             </thead>
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="u in users" class="clearfix">
@@ -77,21 +50,21 @@
             </tbody>
             <tbody>
             <tr>
-                <td><input type="text" ng-model="u.nome"></td>
-                <td><input type="text" ng-model="u.username"></td>
-                <td><input type="text" ng-model="u.password"></td>
-                <td><input type="text" ng-model="u.email"></td>
+                <td><input style="color:black" type="text" ng-model="u.nome"></td>
+                <td><input style="color:black" type="text" ng-model="u.username"></td>
+                <td><input style="color:black" type="text" ng-model="u.password"></td>
+                <td><input style="color:black" type="text" ng-model="u.email"></td>
                 <td>
-                    <select ng-model="u.roles" ng-options="u for u in roles">
+                    <select style="color:black" ng-model="u.roles" ng-options="u for u in roles">
                     </select>
                 </td>
+                <td>
+                    <button ng-click="saveUser(u)" onclick="window.location.reload();">
+                        <span style="color:darkgreen;" class="glyphicon glyphicon-plus"/>
+                    </button>
+                </td>
+
             </tr>
-                <button ng-click="addUser()">
-                    <span class="glyphicon glyphicon-plus"/>
-                </button>
-                <button ng-click="saveUser(u)">
-                    <span class="glyphicon glyphicon-ok" onclick="window.location.reload();"/>
-                </button>
             </tbody>
         </table>
 
@@ -139,13 +112,6 @@
                 },
             );
         };
-
-        $scope.addUser = function(){
-            let u = {
-                '@class' : '<%=UserImpl.class.getName()%>'
-            }
-            $scope.users.push(u);
-        }
 
         $scope.saveUser = function (u){
             send(

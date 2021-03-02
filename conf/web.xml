@@ -35,6 +35,11 @@
     </servlet>
 
     <servlet>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <servlet-class>teste.web.FileUploadServlet</servlet-class>
+    </servlet>
+
+    <servlet>
         <servlet-name>Rest</servlet-name>
         <servlet-class>teste.web.RestServlet</servlet-class>
     </servlet>
@@ -77,6 +82,19 @@
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FileUploadServlet</servlet-name>
+        <url-pattern>/fileUpload</url-pattern>
+    </servlet-mapping>
+
+    <context-param>
+        <description>Location to store uploaded file</description>
+        <param-name>file-upload</param-name>
+        <param-value>
+            src/web/img/
+        </param-value>
+    </context-param>
 
     <servlet-mapping>
         <servlet-name>Rest</servlet-name>

@@ -11,16 +11,6 @@
             align-content: center;
             background-color: darkslateblue;
         }
-
-        .clearfix th, .clearfix td{
-            border:  double white;
-            color: white;
-        }
-
-        .clearfix tbody tr td{
-            color: white;
-            text-align: white;
-        }
         input{
             color:black;
         }
@@ -34,9 +24,9 @@
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
-    <table class="clearfix">
+    <table class="table clearfix">
         <thead>
-        <tr>
+        <tr style="color: white">
             <th>Titulo</th>
             <th>Roles</th>
             <th>ID</th>
@@ -45,13 +35,13 @@
         </tr>
         </thead>
         <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in paginas" class="clearfix">
-        <tr>
+        <tr style="color: white">
             <td>{{p.titulo}}</td>
             <td>{{p.roles}}</td>
             <td>{{p.id}}</td>
             <td> - </td>
             <td><a class="button" href="<%=request.getContextPath()%>/verPage.do?id={{p.id}}">
-                <span class="glyphicon glyphicon-ok"></span>
+                <span style="color: darkgreen" class="glyphicon glyphicon-ok"></span>
             </a></td>
         </tr>
         </tbody>

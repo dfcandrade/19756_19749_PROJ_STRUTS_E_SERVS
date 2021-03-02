@@ -12,27 +12,15 @@
             background-color: darkslateblue;
         }
 
-        .clearfix th, .clearfix td{
-            border:  double white;
-            color: white;
-        }
 
-        .clearfix tbody tr td{
-            color: white;
-            text-align: center;
-        }
-        .clearfix tbody tr td span{
-            color: black;
-            text-align: center;
-        }
     </style>
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
     <div >
-        <table  style="width: 75%;margin-left: 1%;" class="clearfix">
+        <table style="width: 75%;margin-left: 1%;" class="table clearfix">
             <thead>
-            <tr>
+            <tr style="color:white;">
                 <th>Titulo</th>
                 <th>Roles</th>
                 <th>ID</th>
@@ -40,12 +28,12 @@
             </tr>
             </thead>
             <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in paginas" class="clearfix">
-            <tr>
+            <tr style="color: white">
                 <td>{{p.titulo}}</td>
                 <td>{{p.roles}}</td>
                 <td>{{p.iddono}}</td>
-                <td><button ng-click="deletePage(p)">
-                    <span class="glyphicon glyphicon-minus"></span>
+                <td><button ng-click="deletePage(p)" onclick="window.location.reload();">
+                    <span style="color: darkred" class="glyphicon glyphicon-remove"></span>
                 </button>
                 </td>
             </tr>

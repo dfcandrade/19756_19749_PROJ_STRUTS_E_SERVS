@@ -11,16 +11,6 @@
         align-content: center;
         background-color: darkslateblue;
     }
-
-    .clearfix th, .clearfix td{
-        border:  double white;
-        color: white;
-    }
-
-    .clearfix tbody tr td{
-        color: white;
-        text-align: white;
-    }
     input{
         color:black;
     }
@@ -34,9 +24,9 @@
 </head>
 <body>
 <div id="myApp" class="container" ng-app="myApp" ng-controller="myCtrl">
-    <table class="clearfix">
+    <table class="table clearfix">
         <thead>
-            <tr>
+            <tr style="color: white">
                 <th>Titulo</th>
                 <th>Roles</th>
                 <th>ID</th>
@@ -45,24 +35,21 @@
             </tr>
         </thead>
         <tbody ng-app="myApp" ng-controller="myCtrl" ng-repeat="p in paginas" class="clearfix">
-            <tr>
+            <tr style="color:white;">
                 <td>{{p.titulo}}</td>
                 <td>{{p.roles}}</td>
                 <td>{{p.id}}</td>
                 <td> - </td>
                 <td><a class="button" href="<%=request.getContextPath()%>/editPage.do?id={{p.id}}">
-                    <span class="glyphicon glyphicon-ok"></span>
+                    <span style="color: black" class="glyphicon glyphicon-wrench"></span>
                 </a></td>
             </tr>
         </tbody>
         <tbody>
         <tr>
             <td><input span="3" type="text" ng-model="p.titulo"></td>
-            <td><button ng-click="addPage()">
-                    <span class="glyphicon glyphicon-plus"/>
-                </button>
-                <button ng-click="savePage(p)">
-                    <span class="glyphicon glyphicon-ok" onclick="window.location.reload();"/>
+            <td><button ng-click="savePage(p)" onclick="window.location.reload();">
+                    <span style="color: darkgreen" class="glyphicon glyphicon-plus" />
                 </button>
             </td>
             <td> - </td>
@@ -104,13 +91,6 @@
     app.controller("myCtrl", function($scope) {
         $scope.paginas = [];
 
-        $scope.addPage = function(){
-            let p = {
-                '@class' : '<%=PageImpl.class.getName()%>'
-            };
-            $scope.paginas.push(p);
-        };
-
         $scope.savePage = function(p){
             send(
                 "paginas.ServicoPagina",
@@ -119,11 +99,6 @@
                 function(result)
                 {
                     angular.merge(p, result);
-                    $scope.$apply();
-                },
-                function(erro)
-                {
-                    alert(erro);
                     $scope.$apply();
                 }
             );
